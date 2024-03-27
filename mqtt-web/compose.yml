@@ -1,0 +1,13 @@
+services:
+  mqttx-web:
+    image: emqx/mqttx-web
+    ports:
+      - "1980:80"
+    restart: always
+    container_name: mqttx-web
+    networks:
+      - base
+
+networks:
+  base:
+    external: true

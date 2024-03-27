@@ -1,0 +1,20 @@
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kathmandu
+    volumes:
+      - ~/apps/jackett/data:/config
+      - ~/apps/jackett/blackhole:/downloads
+    ports:
+      - "8562:9117"
+    restart: unless-stopped
+    networks:
+        - base
+
+networks:
+  base:
+    external: true
