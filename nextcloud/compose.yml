@@ -1,0 +1,36 @@
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kathmandu
+    volumes:
+      - ~/apps/nextcloud/config:/config
+      - ~/apps/nextcloud/data:/data
+    ports:
+      - 9000:80
+      - 9100:443
+    restart: unless-stopped
+    networks:
+        - base
+  db:
+    image: postgres:alpine
+    container_name: nextcloud-db-pg
+    environment:
+      - POSTGRES_USER=<USERNAME>
+      - POSTGRES_PASSWORD=<PW_HERE>
+      - POSTGRES_DB=nextcloud
+      
+    restart: always
+    volumes:
+      - ~/databases/nextcloud-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+        - base
+
+networks:
+  base:
+    external: true

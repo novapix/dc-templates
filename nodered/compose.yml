@@ -1,0 +1,16 @@
+services:
+  node-red:
+    image: nodered/node-red:latest
+    container_name: nodered
+    environment:
+      - Asia/Kathmandu
+    ports:
+      - "1880:1880"
+    networks:
+      - base
+    volumes:
+      - ~/apps/nodered/data:/data
+
+networks:
+  base:
+    external: true
