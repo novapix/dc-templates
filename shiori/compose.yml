@@ -1,0 +1,11 @@
+services:
+  shiori:
+    container_name: shiori
+    image: ghcr.io/go-shiori/shiori
+    ports:
+      - "9999:8080"
+    volumes:
+      - "~/apps/shiori/data:/src/shiori"
+    restart: unless-stopped
+
+
